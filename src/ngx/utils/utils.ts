@@ -1,4 +1,5 @@
 import { Model } from "../models/Model";
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export function uppercaseFirst(name: string) {
     return name.replace(/\w+/g, function(txt) {
@@ -8,16 +9,17 @@ export function uppercaseFirst(name: string) {
 }
 
 export function capitalizeEachWord(str: string) {
-    var frags = str.split('_');
+    let frags = str.split('_');
+    for (let i=0; i<frags.length; i++) {
+        frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+    }
 
-    frags.map(word => {
-        let uw = word.charAt(0).toUpperCase() + word.slice(1);
-        return uw;
-    });
-
-    console.log(frags);
     return frags.join(' ');
 }
+
+// export function placeholder(field: any) {
+//     return field.placeholder ? field.placeholder : capitalizeEachWord(field.name);
+// }
 
 
 export function modelFieldsToArray(model: Model) {
@@ -30,30 +32,58 @@ export function modelFieldsToArray(model: Model) {
     return `[${fields}, "actions"]`;
 }
 
-export function renderField(field: any) {
-    switch (field.htmlType) {
-        case 'text':
-            return input(field);
-        // case 'date':
-        //     return date(field);
-        // case 'textarea':
-        //     return textarea(field);
-    }
-}
+export function makeValidators(validates: any) {
 
-function input(field: any) {
-    return `<ng-container cdkColumnDef="${field.name}">
-                <mat-header-cell *cdkHeaderCellDef ${(field.sort) ? 'mat-sort-header' : '' }>
-                    ${field.placeholder}
-                </mat-header-cell>
-                <mat-cell *cdkCellDef="let row"> {{row.${field.name}}}</mat-cell>
-            </ng-container>`;
+    if (!validates) return;
+
+    if(!Array.isArray(validates)) {
+        throw new SchematicsException('validates must be array. Idiot!');
+    }
+
+
+    if(validates.length) {
+        let string = ', ';
+
+        if (validates.length == 1) {
+            string += `Validators.${validates[0]}`
+        }
+
+        if(validates.length > 1) {
+            string += '[';
+            validates.map((rule, index, array) =>{
+                string += `Validators.${rule}${(index == (array.length -1)) ? '' : ', ' }`
+            });
+            string += ']';
+        }
+
+
+        return string;
+
+    }
+
 }
 //
-// function date(field) {
-//
+// export function renderField(field: any) {
+//     switch (field.htmlType) {
+//         case 'text':
+//             return input(field);
+//         case 'date':
+//             return date(field);
+//         case 'textarea':
+//             return textarea(field);
+//     }
 // }
 //
-// function textarea(field) {
+// function input(field: any) {
+//     return `<input matInput type="text" placeholder="${placeholder(field)}" formControlName="${field.name}">`;
+// }
 //
+// function date(field: any) {
+//     return `<input matInput [matDatepicker]="picker${field.name}" placeholder="${placeholder(field)}" formControlName="${field.name}">
+//             <mat-datepicker-toggle matSuffix [for]="picker${field.name}"></mat-datepicker-toggle>
+//             <mat-datepicker #picker${field.name}></mat-datepicker>`
+// }
+//
+// function textarea(field: any) {
+//     return `<textarea matInput placeholder="${placeholder(field)}" formControlName="${field.name}"></textarea>`;
 // }

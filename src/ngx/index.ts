@@ -31,12 +31,12 @@ export function ngx(_options: Schema): Rule {
     const folder = url('./files');
 
     const templateP = apply(folder, [
-        template({
-          ..._options,
-          ...strings,
-          ...utils,
-          model
-        })
+      template({
+        ..._options,
+        ...strings,
+        ...utils,
+        model
+      })
     ]);
 
     return mergeWith(templateP)(tree, _context);

@@ -7,9 +7,7 @@
         <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
             <% for(let field of model.fields) { %>
             <ng-container cdkColumnDef="<%= field.name %>">
-                <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>>
-                    <%= field.placeholder ? field.placeholder : capitalizeEachWord(field.name) %>
-                </mat-header-cell>
+                <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>> <%= field.placeholder ? field.placeholder : capitalizeEachWord(field.name) %></mat-header-cell>
                 <mat-cell *cdkCellDef="let row"> {{row.<%= field.name%> <%= (field.htmlType == 'date' ? " | date:'mediumDate'" : "") %>}}</mat-cell>
             </ng-container>
             <% } %>

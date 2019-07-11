@@ -20,7 +20,8 @@
       "placeholder": "Age",
       "sort": true,
       "validates": [
-
+        "required",
+        "email"
       ]
     },
     {
@@ -31,14 +32,13 @@
       "sort": false
     },
     {
-      "name": "branch",
+      "name": "expired_at",
       "dbType": "date",
       "htmlType": "date",
-      "placeholder": "Branch",
       "sort": false
     },
     {
-      "name": "remarks_blala",
+      "name": "remarks",
       "dbType": "text",
       "htmlType": "textarea",
       "sort": false

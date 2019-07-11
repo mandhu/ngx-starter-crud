@@ -6,13 +6,12 @@
     </button>
 </mat-toolbar>
 
-<form [formGroup]="form" (submit)="submit()" fxLayout="column" class="p-1">
-    <mat-form-field fxFlex>
-        <input matInput type="text" placeholder="Name" formControlName="name" required>
-        <mat-error>
-            Name is <strong>required</strong>
-        </mat-error>
+<form [formGroup]="form" (submit)="submit()"  fxLayout="row wrap" class="form-padding w-500">
+    <% for(let field of model.fields) { %>
+    <mat-form-field fxFlex="<%= field.flex ? field.flex : '50 %>">
+        <%= renderField(field) %>
     </mat-form-field>
+    <% } %>
 
     <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="10px">
         <button [disabled]="form.invalid" mat-raised-button="" color="primary">

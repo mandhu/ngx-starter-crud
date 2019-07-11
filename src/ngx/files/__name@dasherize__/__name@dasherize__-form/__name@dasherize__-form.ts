@@ -31,7 +31,8 @@ export class <%=uppercaseFirst(name)%>FormComponent implements OnInit {
     ngOnInit() {
 
         this.form = this.fb.group({
-            name: [null, Validators.required],
+        <% for(let field of model.fields) { %> <%= field.name  %>: [<%= field.value ? field.value : 'null' %><%= makeValidators(field.validates) %>],
+        <% }%>
         });
 
         if (this.data) {
