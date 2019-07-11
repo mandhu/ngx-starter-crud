@@ -1,35 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { NxBaseFunctions } from '../../decorators/NxBaseFunctions';
-import { TugsFormComponent } from './tugs-form/tugs-form.component';
-import { TugsService } from '../../services/tugs.service';
+import { BankFormComponent } from './bank-form/bank-form.component';
+import { BankService } from '../../services/bank.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export interface tugsComponent extends NxBaseFunctions {
+export interface BankComponent extends NxBaseFunctions {
     test;
 }
 
 @Component({
-    selector: 'app-tugs',
-    templateUrl: './tugs.component.html',
-    styleUrls: ['./tugs.component.styl']
+    selector: 'app-bank',
+    templateUrl: './bank.component.html',
+    styleUrls: ['./bank.component.styl']
 })
 
 @NxBaseFunctions({
     serviceName: 'service',
-    title: Tugs,
-    formComponent: TugsFormComponent,
+    title: Bank,
+    formComponent: BankFormComponent,
 })
 
-export class TugsComponent implements OnInit {
+export class BankComponent implements OnInit {
 
-    displayedColumns = ['name', 'actions'];
+    displayedColumns = ["name", "age", "branch", "branch", "remarks_blala", "actions"];
 
     constructor(private dialog: MatDialog,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private sb: MatSnackBar,
-                private service: TugsService) {
+                private service: BankService) {
     }
 
     ngOnInit() {

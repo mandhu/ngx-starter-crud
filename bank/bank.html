@@ -5,11 +5,42 @@
 <div class="data-table">
     <div class="table">
         <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
-
+            
             <ng-container cdkColumnDef="name">
-                <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide.lt-sm="true">Name</mat-header-cell>
-                <mat-cell *cdkCellDef="let row" fxHide.lt-sm="true"> {{row.name}}</mat-cell>
+                <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+                    Name
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.name }}</mat-cell>
             </ng-container>
+            
+            <ng-container cdkColumnDef="age">
+                <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+                    Age
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.age }}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="branch">
+                <mat-header-cell *cdkHeaderCellDef >
+                    Branch
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.branch }}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="branch">
+                <mat-header-cell *cdkHeaderCellDef >
+                    Branch
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.branch  | date:'mediumDate'}}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="remarks_blala">
+                <mat-header-cell *cdkHeaderCellDef >
+                    remarks blala
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.remarks_blala }}</mat-cell>
+            </ng-container>
+            
 
             <ng-container cdkColumnDef="actions">
                 <mat-header-cell *cdkHeaderCellDef></mat-header-cell>

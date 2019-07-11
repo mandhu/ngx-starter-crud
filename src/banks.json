@@ -1,0 +1,47 @@
+{
+  "title": "Hotel",
+  "entity": "hotel",
+  "api": "/api/hotel",
+  "filter": [
+    "city"
+  ],
+  "fields": [
+    {
+      "name": "name",
+      "dbType": "string",
+      "htmlType": "text",
+      "placeholder": "Name",
+      "sort": true
+    },
+    {
+      "name": "age",
+      "dbType": "integer",
+      "htmlType": "number",
+      "placeholder": "Age",
+      "sort": true,
+      "validates": [
+
+      ]
+    },
+    {
+      "name": "branch",
+      "dbType": "string",
+      "htmlType": "text",
+      "placeholder": "Branch",
+      "sort": false
+    },
+    {
+      "name": "branch",
+      "dbType": "date",
+      "htmlType": "date",
+      "placeholder": "Branch",
+      "sort": false
+    },
+    {
+      "name": "remarks_blala",
+      "dbType": "text",
+      "htmlType": "textarea",
+      "sort": false
+    }
+  ]
+}

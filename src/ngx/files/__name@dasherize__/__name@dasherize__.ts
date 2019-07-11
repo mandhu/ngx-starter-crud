@@ -5,7 +5,7 @@ import { <%=uppercaseFirst(name)%>Service } from '../../services/<%=dasherize(na
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export interface <%=dasherize(name)%>Component extends NxBaseFunctions {
+export interface <%=uppercaseFirst(name)%>Component extends NxBaseFunctions {
     test;
 }
 
@@ -23,7 +23,7 @@ export interface <%=dasherize(name)%>Component extends NxBaseFunctions {
 
 export class <%=uppercaseFirst(name)%>Component implements OnInit {
 
-    displayedColumns = ['name', 'actions'];
+    displayedColumns = <%= modelFieldsToArray(model) %>;
 
     constructor(private dialog: MatDialog,
                 private router: Router,

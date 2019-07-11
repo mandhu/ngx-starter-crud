@@ -5,11 +5,14 @@
 <div class="data-table">
     <div class="table">
         <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
-
-            <ng-container cdkColumnDef="name">
-                <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide.lt-sm="true">Name</mat-header-cell>
-                <mat-cell *cdkCellDef="let row" fxHide.lt-sm="true"> {{row.name}}</mat-cell>
+            <% for(let field of model.fields) { %>
+            <ng-container cdkColumnDef="<%= field.name %>">
+                <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>>
+                    <%= field.placeholder ? field.placeholder : capitalizeEachWord(field.name) %>
+                </mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.<%= field.name%> <%= (field.htmlType == 'date' ? " | date:'mediumDate'" : "") %>}}</mat-cell>
             </ng-container>
+            <% } %>
 
             <ng-container cdkColumnDef="actions">
                 <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
