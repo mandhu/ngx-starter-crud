@@ -1,0 +1,22 @@
+<mat-toolbar color='primary'>
+    <span>{{ data.id ? "Edit" : "Add"}} Allowance</span>
+    <span fxFlex=""></span>
+    <button mat-icon-button="" mat-dialog-close matTooltip="close">
+        <mat-icon class="c-w">close</mat-icon>
+    </button>
+</mat-toolbar>
+
+<form [formGroup]="form" (submit)="submit()" fxLayout="column" class="p-1">
+    <mat-form-field fxFlex>
+        <input matInput type="text" placeholder="Name" formControlName="name" required>
+        <mat-error>
+            Name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="10px">
+        <button [disabled]="form.invalid" mat-raised-button="" color="primary">
+            {{ data.id ? "Update" : "Add"}}
+        </button>
+    </div>
+</form>

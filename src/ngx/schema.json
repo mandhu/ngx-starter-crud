@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "ngxSchema",
+    "title": "Creates a simple schematic.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Specifies the name of the generated Class.",
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            }
+        }
+    },
+    "required": [
+    ],
+    "additionalProperties": false
+}
