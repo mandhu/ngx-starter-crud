@@ -8,11 +8,10 @@
 
 <form [formGroup]="form" (submit)="submit()"  fxLayout="row wrap" class="form-padding w-500">
     <% for(let field of model.fields) { %>
-    <mat-form-field fxFlex="<%= field.flex ? field.flex : '50 %>">
+    <mat-form-field fxFlex="<%= field.flex ? field.flex : '50' %>">
         <%= renderField(field) %>
     </mat-form-field>
     <% } %>
-
     <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="10px">
         <button [disabled]="form.invalid" mat-raised-button="" color="primary">
             {{ data.id ? "Update" : "Add"}}

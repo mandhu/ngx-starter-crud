@@ -5,12 +5,37 @@
 <div class="data-table">
     <div class="table">
         <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
-            <% for(let field of model.fields) { %>
-            <ng-container cdkColumnDef="<%= field.name %>">
-                <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>><%= placeholder(field) %></mat-header-cell>
-                <mat-cell *cdkCellDef="let row"> {{row.<%= field.name%> <%= (field.htmlType == 'date' ? " | date:'mediumDate'" : "") %>}}</mat-cell>
+            
+            <ng-container cdkColumnDef="name">
+                <mat-header-cell *cdkHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.name }}</mat-cell>
             </ng-container>
-            <% } %>
+            
+            <ng-container cdkColumnDef="age">
+                <mat-header-cell *cdkHeaderCellDef mat-sort-header>Age</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.age }}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="branch">
+                <mat-header-cell *cdkHeaderCellDef >Branch</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.branch }}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="expired_at">
+                <mat-header-cell *cdkHeaderCellDef >Expired At</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.expired_at  | date:'mediumDate'}}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="status">
+                <mat-header-cell *cdkHeaderCellDef >Status</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.status }}</mat-cell>
+            </ng-container>
+            
+            <ng-container cdkColumnDef="remarks">
+                <mat-header-cell *cdkHeaderCellDef >Remarks</mat-header-cell>
+                <mat-cell *cdkCellDef="let row"> {{row.remarks }}</mat-cell>
+            </ng-container>
+            
 
             <ng-container cdkColumnDef="actions">
                 <mat-header-cell *cdkHeaderCellDef></mat-header-cell>

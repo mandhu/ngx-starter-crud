@@ -36,6 +36,16 @@
       "dbType": "date",
       "htmlType": "date",
       "sort": false
+    },{
+      "name": "status",
+      "dbType": "integer",
+      "htmlType": "select",
+      "options": [
+        {"1":  "Active"},
+        {"2":  "Suspended"},
+        {"3":  "Out of town"}
+      ],
+      "sort": false
     },
     {
       "name": "remarks",
