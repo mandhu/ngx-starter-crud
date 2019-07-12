@@ -47,7 +47,7 @@ export function ngx(_options: Schema): Rule {
 
     console.log(_options);
 
-    const modelBuffer = tree.read('/src/banks.json');
+    const modelBuffer = tree.read('./src/banks.json');
 
     if (modelBuffer === null) {
       throw new SchematicsException(`Model file does not exist.`);

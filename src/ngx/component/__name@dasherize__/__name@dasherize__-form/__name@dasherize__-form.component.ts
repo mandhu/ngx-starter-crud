@@ -21,7 +21,7 @@ export interface <%=classify(name)%>FormComponent extends NxForm {
 
 export class <%=classify(name)%>FormComponent implements OnInit {
 
-    constructor(public dialogRef: MatDialogRef<AllowanceFormComponent>,
+    constructor(public dialogRef: MatDialogRef<<%=classify(name)%>FormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,
                 private sb: MatSnackBar,
                 private service: <%=classify(name)%>Service,
