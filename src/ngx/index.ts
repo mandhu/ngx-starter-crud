@@ -9,8 +9,8 @@ import {
   url
 } from '@angular-devkit/schematics';
 
-// import { getWorkspace } from '@schematics/angular/utility/config';
-// import { parseName } from '@schematics/angular/utility/parse-name';
+import { getWorkspace } from '@schematics/angular/utility/config';
+import { parseName } from '@schematics/angular/utility/parse-name';
 
 import { Schema } from "./models/Schema";
 
@@ -19,23 +19,24 @@ import { strings } from "@angular-devkit/core";
 import { Model } from "./models/Model";
 
 
-// function setupOptions(options: Schema, host: Tree): void {
-//   const workspace = getWorkspace(host);
-//   if (!options.project) {
-//     options.project = Object.keys(workspace.projects)[0];
-//   }
-//   const project = workspace.projects[options.project];
-//
-//   if (options.path === undefined) {
-//     const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-//     options.path = `/${project.root}/src/${projectDirName}`;
-//   }
-//
-//   const parsedPath = parseName(options.path, options.name);
-//   options.name = parsedPath.name;
-//   options.path = parsedPath.path;
-//
-// }
+function setupOptions(options: Schema, host: Tree): void {
+  const workspace = getWorkspace(host);
+  console.log(workspace);
+  if (!options.project) {
+    options.project = Object.keys(workspace.projects)[0];
+  }
+  const project = workspace.projects[options.project];
+
+  if (options.path === undefined) {
+    const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
+    options.path = `/${project.root}/src/${projectDirName}`;
+  }
+
+  const parsedPath = parseName(options.path, options.name);
+  options.name = parsedPath.name;
+  options.path = parsedPath.path;
+
+}
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -43,7 +44,7 @@ import { Model } from "./models/Model";
 export function ngx(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
 
-    // setupOptions(_options, tree);
+    setupOptions(_options, tree);
 
     console.log(_options);
 
