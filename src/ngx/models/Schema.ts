@@ -1,3 +1,5 @@
 export interface Schema {
-    name: string
+    name: string,
+    project?: string,
+    path?: string,
 }

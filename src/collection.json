@@ -2,7 +2,6 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ngx": {
-      "aliases": [ "ngx-module" ],
       "description": "A blank schematic.",
       "factory": "./ngx/index#ngx",
       "schema": "./ngx/schema.json"

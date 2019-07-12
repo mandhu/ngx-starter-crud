@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NxDataService } from '../decorators/NxDataService';
 
-export interface TestService extends NxDataService<any> {
+export interface TestBestService extends NxDataService<any> {
     test;
 }
 
@@ -14,7 +14,7 @@ export interface TestService extends NxDataService<any> {
     url: '/api/hotel'
 })
 
-export class TestService {
+export class TestBestService {
 
     constructor(public http: HttpClient) {
     }

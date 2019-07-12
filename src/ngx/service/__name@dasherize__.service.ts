@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NxDataService } from '../decorators/NxDataService';
 
-export interface <%=uppercaseFirst(name)%>Service extends NxDataService<any> {
+export interface <%=classify(name)%>Service extends NxDataService<any> {
     test;
 }
 
@@ -14,7 +14,7 @@ export interface <%=uppercaseFirst(name)%>Service extends NxDataService<any> {
     url: '<%=model.api%>'
 })
 
-export class <%=uppercaseFirst(name)%>Service {
+export class <%=classify(name)%>Service {
 
     constructor(public http: HttpClient) {
     }

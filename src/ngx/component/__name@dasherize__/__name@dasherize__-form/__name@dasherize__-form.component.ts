@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NxForm } from '../../../decorators/NxForm';
-import { <%=uppercaseFirst(name)%>Service } from '../../../services/<%=dasherize(name)%>.service';
+import { <%=classify(name)%>Service } from '../../../services/<%=dasherize(name)%>.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-export interface <%=uppercaseFirst(name)%>FormComponent extends NxForm {
+export interface <%=classify(name)%>FormComponent extends NxForm {
     test;
 }
 
@@ -19,12 +19,12 @@ export interface <%=uppercaseFirst(name)%>FormComponent extends NxForm {
     title: '<%=title(name, model)%>',
 })
 
-export class <%=uppercaseFirst(name)%>FormComponent implements OnInit {
+export class <%=classify(name)%>FormComponent implements OnInit {
 
     constructor(public dialogRef: MatDialogRef<AllowanceFormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,
                 private sb: MatSnackBar,
-                private service: <%=uppercaseFirst(name)%>Service,
+                private service: <%=classify(name)%>Service,
                 private fb: FormBuilder) {
     }
 

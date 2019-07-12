@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NxBaseFunctions } from '../../decorators/NxBaseFunctions';
-import { <%=uppercaseFirst(name)%>FormComponent } from './<%=dasherize(name)%>-form/<%=dasherize(name)%>-form.component';
-import { <%=uppercaseFirst(name)%>Service } from '../../services/<%=dasherize(name)%>.service';
+import { <%=classify(name)%>FormComponent } from './<%=dasherize(name)%>-form/<%=dasherize(name)%>-form.component';
+import { <%=classify(name)%>Service } from '../../services/<%=dasherize(name)%>.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export interface <%=uppercaseFirst(name)%>Component extends NxBaseFunctions {
+export interface <%=classify(name)%>Component extends NxBaseFunctions {
     test;
 }
 
@@ -18,10 +18,10 @@ export interface <%=uppercaseFirst(name)%>Component extends NxBaseFunctions {
 @NxBaseFunctions({
     serviceName: 'service',
     title: '<%=title(name, model)%>',
-    formComponent: <%=uppercaseFirst(name)%>FormComponent,
+    formComponent: <%=classify(name)%>FormComponent,
 })
 
-export class <%=uppercaseFirst(name)%>Component implements OnInit {
+export class <%=classify(name)%>Component implements OnInit {
 
     displayedColumns = <%= modelFieldsToArray(model) %>;
 
@@ -29,7 +29,7 @@ export class <%=uppercaseFirst(name)%>Component implements OnInit {
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private sb: MatSnackBar,
-                private service: <%=uppercaseFirst(name)%>Service) {
+                private service: <%=classify(name)%>Service) {
     }
 
     ngOnInit() {

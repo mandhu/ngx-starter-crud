@@ -1,17 +1,17 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NxForm } from '../../../decorators/NxForm';
-import { TestService } from '../../../services/test.service';
+import { TestBestService } from '../../../services/test-best.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-export interface TestFormComponent extends NxForm {
+export interface TestBestFormComponent extends NxForm {
     test;
 }
 
 @Component({
-    selector: 'app-test-form',
-    templateUrl: './test-form.component.html',
-    styleUrls: ['./test-form.component.styl']
+    selector: 'app-test-best-form',
+    templateUrl: './test-best-form.component.html',
+    styleUrls: ['./test-best-form.component.styl']
 })
 
 @NxForm({
@@ -19,12 +19,12 @@ export interface TestFormComponent extends NxForm {
     title: 'Hotel Maldives',
 })
 
-export class TestFormComponent implements OnInit {
+export class TestBestFormComponent implements OnInit {
 
     constructor(public dialogRef: MatDialogRef<AllowanceFormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,
                 private sb: MatSnackBar,
-                private service: TestService,
+                private service: TestBestService,
                 private fb: FormBuilder) {
     }
 
