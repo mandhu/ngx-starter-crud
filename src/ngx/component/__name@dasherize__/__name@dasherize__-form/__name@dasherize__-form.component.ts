@@ -16,7 +16,7 @@ export interface <%=uppercaseFirst(name)%>FormComponent extends NxForm {
 
 @NxForm({
     serviceName: 'service',
-    title: <%=uppercaseFirst(name)%>,
+    title: '<%=title(name, model)%>',
 })
 
 export class <%=uppercaseFirst(name)%>FormComponent implements OnInit {

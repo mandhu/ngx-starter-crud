@@ -17,7 +17,7 @@ export interface TestComponent extends NxBaseFunctions {
 
 @NxBaseFunctions({
     serviceName: 'service',
-    title: Test,
+    title: 'Hotel Maldives',
     formComponent: TestFormComponent,
 })
 

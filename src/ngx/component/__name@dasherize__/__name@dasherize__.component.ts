@@ -17,7 +17,7 @@ export interface <%=uppercaseFirst(name)%>Component extends NxBaseFunctions {
 
 @NxBaseFunctions({
     serviceName: 'service',
-    title: <%=uppercaseFirst(name)%>,
+    title: '<%=title(name, model)%>',
     formComponent: <%=uppercaseFirst(name)%>FormComponent,
 })
 

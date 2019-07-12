@@ -1,6 +1,6 @@
 import {
-  apply,
-  mergeWith,
+  apply, branchAndMerge, chain,
+  mergeWith, move,
   Rule,
   SchematicContext,
   SchematicsException,
@@ -28,17 +28,35 @@ export function ngx(_options: Schema): Rule {
     const modelJson = modelBuffer.toString('utf-8');
     const model = JSON.parse(modelJson) as Model;
 
-    const folder = url('./files');
+    const componentFolder = url('./component');
+    const serviceFolder = url('./service');
 
-    const templateP = apply(folder, [
+    const componentTemplate = apply(componentFolder, [
       template({
         ..._options,
         ...strings,
         ...utils,
         model
-      })
+      }),
+      move('app/master/')
     ]);
 
-    return mergeWith(templateP)(tree, _context);
+    const serviceTemplate = apply(serviceFolder, [
+      template({
+        ..._options,
+        ...strings,
+        ...utils,
+        model
+      }),
+      move('app/services/')
+    ]);
+
+    return chain([
+      branchAndMerge(chain([
+        mergeWith(componentTemplate),
+        mergeWith(serviceTemplate),
+      ])),
+    ])(tree, _context);
+
   };
 }

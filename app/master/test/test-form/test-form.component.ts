@@ -16,7 +16,7 @@ export interface TestFormComponent extends NxForm {
 
 @NxForm({
     serviceName: 'service',
-    title: Test,
+    title: 'Hotel Maldives',
 })
 
 export class TestFormComponent implements OnInit {

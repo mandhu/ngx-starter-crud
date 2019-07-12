@@ -22,6 +22,10 @@ export function placeholder(field: any) {
 }
 
 
+export function title(name: string, model: Model) {
+    return model.title ? model.title : uppercaseFirst(name);
+}
+
 export function modelFieldsToArray(model: Model) {
     let fields: any[] = [];
 
