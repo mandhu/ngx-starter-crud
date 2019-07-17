@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { NxForm } from '../../../decorators/NxForm';
 import { <%=classify(name)%>Service } from '../../../services/<%=dasherize(name)%>.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 
 export interface <%=classify(name)%>FormComponent extends NxForm {
     test;
@@ -20,6 +20,8 @@ export interface <%=classify(name)%>FormComponent extends NxForm {
 })
 
 export class <%=classify(name)%>FormComponent implements OnInit {
+
+    form: FormGroup;
 
     constructor(public dialogRef: MatDialogRef<<%=classify(name)%>FormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,

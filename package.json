@@ -1,6 +1,6 @@
 {
   "name": "ngx-starter-crud",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Crud generator for ngx-starter",
   "scripts": {
     "build": "tsc -p tsconfig.json",
