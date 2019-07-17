@@ -1,6 +1,6 @@
 {
   "name": "ngx-starter-crud",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Crud generator for ngx-starter",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -8,10 +8,18 @@
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "angular",
+    "ngx-starter",
+    "crud-generator"
   ],
-  "author": "",
+  "author": "Mandhu",
   "license": "MIT",
+  "homepage": "https://github.com/mandhu/ngx-crud",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mandhu/ngx-crud"
+  },
   "schematics": "./src/collection.json",
   "dependencies": {
     "@angular-devkit/core": "^8.1.1",
