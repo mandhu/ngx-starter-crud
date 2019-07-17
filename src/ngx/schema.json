@@ -12,6 +12,14 @@
                 "index": 0
             }
         },
+        "file": {
+            "description": "Specifies the file of the generated Class.",
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            }
+        },
         "project": {
             "type": "string",
             "description": "The name of the project.",

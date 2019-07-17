@@ -48,7 +48,9 @@ export function ngx(_options: Schema): Rule {
 
     console.log(_options);
 
-    const modelBuffer = tree.read('./src/banks.json');
+    const fileName = _options.file ? _options.file : _options.name;
+
+    const modelBuffer = tree.read(`./src/schemas/${fileName}.json`);
 
     if (modelBuffer === null) {
       throw new SchematicsException(`Model file does not exist.`);
@@ -67,7 +69,7 @@ export function ngx(_options: Schema): Rule {
         ...utils,
         model
       }),
-      move('app/master/')
+      move(`${_options.path}/master/`)
     ]);
 
     const serviceTemplate = apply(serviceFolder, [
@@ -77,7 +79,7 @@ export function ngx(_options: Schema): Rule {
         ...utils,
         model
       }),
-      move('app/services/')
+      move(`${_options.path}/services/`)
     ]);
 
     return chain([
