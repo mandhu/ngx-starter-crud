@@ -13,9 +13,10 @@ $ npm install ngx-starter-crud
     git clone https://github.com/mandhu/ngx-starter
     cd ngx-starter && npm i ngx-starter-crud
     ```
+    NOTE: You can use this package any angular project, but decorators are not available 
 2. Create folder and files
     - Create schemas folder inside project root
-    - create all model inside schemas folder
+    - Create all model inside schemas folder
 
 3. Model File
     ``sample model file:  Bank.json``
@@ -74,7 +75,24 @@ $ npm install ngx-starter-crud
   ]
 } 
 ```
+4. Create CRUD
+``` 
+ng g ngx-starter-crud:ngx [component-name] OR
+ng g ngx-starter-crud:ngx [component-name] --file=[model file name without .json]
+```
+#### Example
 
+if model file name and component name are same
+```
+ng g ngx-starter-crud:ngx Bank
+```
+
+if model file name and component name are different
+```
+ng g ngx-starter-crud:ngx banks --file="Bank"
+```
+
+NOTE: For now you need update manualy parent model declerations, imports and other array and routing modele file. ;)
 
 ### Fields
 
@@ -87,4 +105,9 @@ $ npm install ngx-starter-crud
 | placeholder | No | string | null | If not prove name cover to humanize form and considered as place holder, Eg. name: 'full_name' conver to  palceholder:'Full Name'
 | sort | No | boolean | null | Listing table column header sortable or not
 | validates | No | string [] | null | FormControll valitors, support angular form validators, Eg .requires, email, max(8), min(8)
+
+
+### TODO
+- Update Parent model declarations, imports, entryComponents array automatically
+- update parent routing module file automatically
 
