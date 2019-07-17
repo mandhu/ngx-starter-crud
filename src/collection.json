@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "ngx": {
-      "description": "A blank schematic.",
+      "description": "All files need for crud",
       "factory": "./ngx/index#ngx",
       "schema": "./ngx/schema.json"
     }
