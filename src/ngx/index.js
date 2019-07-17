@@ -25,7 +25,7 @@ function setupOptions(options, host) {
 function ngx(_options) {
     return (tree, _context) => {
         setupOptions(_options, tree);
-        console.log(_options);
+        // console.log(_options);
         const fileName = _options.file ? _options.file : _options.name;
         const modelBuffer = tree.read(`./src/schemas/${fileName}.json`);
         if (modelBuffer === null) {

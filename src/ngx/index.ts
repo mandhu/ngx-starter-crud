@@ -46,7 +46,7 @@ export function ngx(_options: Schema): Rule {
 
     setupOptions(_options, tree);
 
-    console.log(_options);
+    // console.log(_options);
 
     const fileName = _options.file ? _options.file : _options.name;
 

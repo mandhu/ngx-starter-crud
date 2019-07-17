@@ -1,6 +1,4 @@
-# Ignores TypeScript files, but keeps definitions.
-!"src/*/component/**/*.ts"
-!"src/*/service/**/*.ts"
+# Ignores TypeScript files, but keeps definitions
 !*.d.ts
 
 # IDEs
