@@ -1,8 +1,14 @@
 import { Model } from "../models/Model";
+export declare function isRequired(array: string[], key: string): string;
+export declare function removeLetters(word: string, syb?: string, index?: number): string;
 export declare function uppercaseFirst(name: string): string;
 export declare function capitalizeEachWord(str: string): string;
 export declare function placeholder(field: any): any;
 export declare function title(name: string, model: Model): string;
 export declare function modelFieldsToArray(model: Model): string;
 export declare function makeValidators(validates: any): string | undefined;
+export declare function autoCompleteArrays(fields: any[]): string;
+export declare function renderAutoCompleteHandler(field: any): string;
+export declare function autoCompletePatchValue(fields: any[]): string;
 export declare function renderField(field: any): string | undefined;
+export declare function renderValidatorError(field: any): string | undefined;

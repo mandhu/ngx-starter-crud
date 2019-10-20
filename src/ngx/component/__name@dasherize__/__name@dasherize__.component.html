@@ -3,41 +3,39 @@
 </app-header>
 
 <div class="data-table">
-    <div class="table">
-        <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
-            <% for(let field of model.fields) { %>
-            <ng-container cdkColumnDef="<%= field.name %>">
-                <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>><%= placeholder(field) %></mat-header-cell>
-                <mat-cell *cdkCellDef="let row"> {{row.<%= field.name%> <%= (field.htmlType == 'date' ? " | date:'mediumDate'" : "") %>}}</mat-cell>
-            </ng-container>
-            <% } %>
+    <mat-table [dataSource]="nxDataSource" matSort (matSortChange)="sortData($event)">
+        <% for(let field of model.fields) { %>
+        <ng-container cdkColumnDef="<%= field.name %>">
+            <mat-header-cell *cdkHeaderCellDef <%= (field.sort) ? 'mat-sort-header' : '' %>><%= placeholder(field) %></mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.<%= field.name%> <%= (field.htmlType == 'date' ? " | date:'mediumDate'" : "") %>}}</mat-cell>
+        </ng-container>
+        <% } %>
 
-            <ng-container cdkColumnDef="actions">
-                <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-                <mat-cell *cdkCellDef="let row">
-                    <div>
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            <mat-icon>more_vert</mat-icon>
+        <ng-container cdkColumnDef="actions">
+            <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+                <div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="addOrUpdate(row)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
                         </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="addOrUpdate(row)">
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item (click)="delete(row.id)" >
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
-                    </div>
-                </mat-cell>
-            </ng-container>
+                        <button mat-menu-item (click)="delete(row.id)" >
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </mat-cell>
+        </ng-container>
 
-            <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-header-row *cdkHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
 
-        </mat-table>
-    </div>
+    </mat-table>
     <mat-paginator #paginator
                    [length]="data?.total"
                    (page)="change($event)"

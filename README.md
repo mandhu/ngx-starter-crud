@@ -33,6 +33,14 @@ $ npm install ngx-starter-crud
       "sort": true
     },
     {
+      "name": "country_id",
+      "dbType": "string",
+      "htmlType": "select-auto",
+      "validates": [
+        "required"
+      ]
+    },
+    {
       "name": "age",
       "dbType": "integer",
       "htmlType": "number",
@@ -100,7 +108,7 @@ NOTE: For now you need update manualy parent model declerations, imports and oth
 | ------ | ------ | ------ | ----- | ----- |
 | name | Yes | string | null | Name of the field. Use for form control name 
 | dbType | No | string | null | DB field type |  
-| htmlType | Yes | string | null | Support type: text,number,textarea,date,select
+| htmlType | Yes | string | null | Support type: text,number,textarea,date,select,select-auto(auto compete)
 | options | No | string[] | emplty option | If htmlType is 'select' provide options array
 | placeholder | No | string | null | If not prove name cover to humanize form and considered as place holder, Eg. name: 'full_name' conver to  palceholder:'Full Name'
 | sort | No | boolean | null | Listing table column header sortable or not
@@ -109,5 +117,5 @@ NOTE: For now you need update manualy parent model declerations, imports and oth
 
 ### TODO
 - Update Parent model declarations, imports, entryComponents array automatically
-- update parent routing module file automatically
+- Update parent routing module file automatically
 

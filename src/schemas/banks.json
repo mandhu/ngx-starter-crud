@@ -52,6 +52,14 @@
       "dbType": "text",
       "htmlType": "textarea",
       "sort": false
+    },
+    {
+      "name": "employee_id",
+      "htmlType": "select-auto",
+      "validates": [
+        "required"
+      ]
     }
+
   ]
 }

@@ -4,6 +4,7 @@ import { <%=classify(name)%>Service } from '../../../services/<%=dasherize(name)
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 
+
 export interface <%=classify(name)%>FormComponent extends NxForm {
     test;
 }
@@ -22,6 +23,7 @@ export interface <%=classify(name)%>FormComponent extends NxForm {
 export class <%=classify(name)%>FormComponent implements OnInit {
 
     form: FormGroup;
+    <%= autoCompleteArrays(model.fields) %>
 
     constructor(public dialogRef: MatDialogRef<<%=classify(name)%>FormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,14 +35,18 @@ export class <%=classify(name)%>FormComponent implements OnInit {
     ngOnInit() {
 
         this.form = this.fb.group({
-        <% for(let field of model.fields) { %> <%= field.name  %>: [<%= field.value ? field.value : 'null' %><%= makeValidators(field.validates) %>],
+        <% for(let field of model.fields) { %> <%=   '\t\t'+field.name  %>: [<%= field.value ? field.value : 'null' %><%= makeValidators(field.validates) %>],
         <% }%>
         });
 
         if (this.data) {
-            this.form.addControl('id', new FormControl(this.data.id));
+            if (this.data.id) {
+                this.form.addControl('id', new FormControl(this.data.id));
+            }
+            <%=autoCompletePatchValue(model.fields) %>
             this.form.patchValue(this.data);
         }
+        <% for(let field of model.fields) { %> <%= field.htmlType == 'select-auto' ? renderAutoCompleteHandler(field) : '' %><% }%>
     }
 
 

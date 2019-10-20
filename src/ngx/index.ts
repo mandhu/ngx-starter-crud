@@ -1,12 +1,16 @@
 import {
-  apply, branchAndMerge, chain,
-  mergeWith, move,
-  Rule,
-  SchematicContext,
-  SchematicsException,
-  template,
-  Tree,
-  url
+    apply,
+    branchAndMerge,
+    chain,
+    mergeWith,
+    move,
+    Rule,
+    SchematicContext,
+    SchematicsException,
+    template,
+    Tree,
+    url,
+
 } from '@angular-devkit/schematics';
 
 import { getWorkspace } from '@schematics/angular/utility/config';
@@ -20,21 +24,22 @@ import { Model } from "./models/Model";
 
 
 function setupOptions(options: Schema, host: Tree): void {
-  const workspace = getWorkspace(host);
-  console.log(workspace);
-  if (!options.project) {
-    options.project = Object.keys(workspace.projects)[0];
-  }
-  const project = workspace.projects[options.project];
-
-  if (options.path === undefined) {
+    const workspace = getWorkspace(host);
+    // console.log(workspace);
+    if (!options.project) {
+        options.project = Object.keys(workspace.projects)[0];
+    }
+    const project = workspace.projects[options.project];
     const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-    options.path = `/${project.root}/src/${projectDirName}`;
-  }
 
-  const parsedPath = parseName(options.path, options.name);
-  options.name = parsedPath.name;
-  options.path = parsedPath.path;
+    if (options.path === undefined) {
+        options.path = `/${project.root}/src/${projectDirName}`;
+    }
+
+    const parsedPath = parseName(options.path, options.name);
+    options.name = parsedPath.name;
+    options.path = parsedPath.path;
+    options.servicePath = `${project.root}/src/${projectDirName}/services/`;
 
 }
 
@@ -42,52 +47,50 @@ function setupOptions(options: Schema, host: Tree): void {
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
 export function ngx(_options: Schema): Rule {
-  return (tree: Tree, _context: SchematicContext) => {
+    return (tree: Tree, _context: SchematicContext) => {
 
-    setupOptions(_options, tree);
+        setupOptions(_options, tree);
 
-    // console.log(_options);
+        const fileName = _options.file ? _options.file : _options.name;
 
-    const fileName = _options.file ? _options.file : _options.name;
+        const modelBuffer = tree.read(`./src/schemas/${fileName}.json`);
 
-    const modelBuffer = tree.read(`./src/schemas/${fileName}.json`);
+        if (modelBuffer === null) {
+            throw new SchematicsException(`Model file does not exist.`);
+        }
 
-    if (modelBuffer === null) {
-      throw new SchematicsException(`Model file does not exist.`);
-    }
+        const modelJson = modelBuffer.toString('utf-8');
+        const model = JSON.parse(modelJson) as Model;
 
-    const modelJson = modelBuffer.toString('utf-8');
-    const model = JSON.parse(modelJson) as Model;
+        const componentFolder = url('./component');
+        const serviceFolder = url('./service');
 
-    const componentFolder = url('./component');
-    const serviceFolder = url('./service');
+        const componentTemplate = apply(componentFolder, [
+            template({
+                ..._options,
+                ...strings,
+                ...utils,
+                model
+            }),
+            move(`${_options.path}/`)
+        ]);
 
-    const componentTemplate = apply(componentFolder, [
-      template({
-        ..._options,
-        ...strings,
-        ...utils,
-        model
-      }),
-      move(`${_options.path}/master/`)
-    ]);
+        const serviceTemplate = apply(serviceFolder, [
+            template({
+                ..._options,
+                ...strings,
+                ...utils,
+                model
+            }),
+            move(`${_options.servicePath}`)
+        ]);
 
-    const serviceTemplate = apply(serviceFolder, [
-      template({
-        ..._options,
-        ...strings,
-        ...utils,
-        model
-      }),
-      move(`${_options.path}/services/`)
-    ]);
+        return chain([
+            branchAndMerge(chain([
+                mergeWith(componentTemplate),
+                mergeWith(serviceTemplate),
+            ])),
+        ])(tree, _context);
 
-    return chain([
-      branchAndMerge(chain([
-        mergeWith(componentTemplate),
-        mergeWith(serviceTemplate),
-      ])),
-    ])(tree, _context);
-
-  };
+    };
 }
